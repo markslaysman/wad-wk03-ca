@@ -4,9 +4,9 @@ import { NewRoomForm } from './NewRoomForm';
 export const House = (props) => {
     const { house, updateHouse } = props;
 
-    function DeleteHouse () {
+    function RemoveHouse () {
         console.log(`Delete House Click for ${house._id} ${house.name}`);
-        props.deleteHouse(house);
+        deleteHouse(house);
     }
 
     const deleteRoom = (roomId) => {
@@ -35,7 +35,7 @@ export const House = (props) => {
     return (
         <div>
             <div>
-                <h1>{house.name}<button onClick={DeleteHouse}>Delete House</button></h1>
+                <h1>{house.name}<button onClick={RemoveHouse}>Delete House</button></h1>
             </div>
             
             {
