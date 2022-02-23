@@ -11,6 +11,21 @@ class HousesApi {
         }
     }
 
+    post = async (house) => {
+        try {
+            const resp = await fetch(`${HOUSES_ENDPOINT}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(house)
+            });
+            return await resp.json();
+        } catch (e) {
+            console.log ('Error with adding house - ', e);
+        }
+    }  
+
     put = async (house) => {
         try {
             const resp = await fetch(`${HOUSES_ENDPOINT}/${house._id}`, {
@@ -22,7 +37,21 @@ class HousesApi {
             });
             return await resp.json();
         } catch (e) {
-            console.log ('Error with updating houses - ', e);
+            console.log ('Error with updating house - ', e);
+        }
+    }
+
+    delete = async (house) => {
+        try {
+            const resp = await fetch(`${HOUSES_ENDPOINT}/${house._id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            return await resp.json();
+        } catch (e) {
+            console.log ('Error with deleting house - ', e);
         }
     }
 }
