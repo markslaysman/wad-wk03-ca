@@ -1,54 +1,69 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+
 import { House } from './House';
 import { housesApi } from '../rest/HousesApi.js';
 import { NewHouseForm } from './NewHouseForm';
 
-export class HousesList extends React.Component {
-    state = {
-        houses : []
-    };
+function HousesList() {
+    const [isLoading, setIsLoading] = useState(false);
+    const [houses, setHouses] = useState([]);
+    const [houseChange, houseHasChanged] = useState(false);
+    
+    useEffect( () => {
 
-    componentDidMount() {
-        this.fetchHouses();
-    }
+        const fetchHouses = async () => {
+            setIsLoading(true);
+            const houseList = await housesApi.get();
+            setHouses(houseList);
+            setIsLoading(false);
+        }
+        fetchHouses();
+        houseHasChanged(false);
+    }, [houseChange])
 
-    fetchHouses = async () => {
-        const houses = await housesApi.get();
-        this.setState({houses});
-    };
-
-    updateHouse = async(updatedHouse) => {
+    const updateHouse = async(updatedHouse) => {
         await housesApi.put(updatedHouse);
-        this.fetchHouses();
+        //fetchHouses();
+        houseHasChanged(true);
     };
 
-    addHouse = async(house) => {
+    const addHouse = async(house) => {
         await housesApi.post(house);
-        this.fetchHouses();
+        //fetchHouses();
+        houseHasChanged(true);
     }
 
-    deleteHouse = async(house) => {
+    const deleteHouse = async(house) => {
         await housesApi.delete(house);
-        this.fetchHouses();
+        //fetchHouses();
+        houseHasChanged(true);
     }
 
-    render() {
+    if (isLoading) {
         return (
             <div>
-                <div className="newhouse-form">
-                    <NewHouseForm addNewHouse={this.addHouse} />
-                </div>
-                <div className="house-list">
-                    {this.state.houses.map((house) => (
-                        <House 
-                            house={house}
-                            key={house._id}
-                            updateHouse={this.updateHouse}
-                            deleteHouse={this.deleteHouse}
-                        />
-                    ))}
-                </div>
+                <h1>LOADING.......</h1>
             </div>
-        )
+        );
     }
+
+    return (
+        <div>
+            <div className="newhouse-form">
+                <NewHouseForm addNewHouse={addHouse} />
+            </div>
+            <div className="house-list">
+                {houses.map((house) => (
+                    <House 
+                        house={house}
+                        key={house._id}
+                        updateHouse={updateHouse}
+                        deleteHouse={deleteHouse}
+                    />
+                ))}
+            </div>
+        </div>
+    )
 }
+
+export default HousesList;
