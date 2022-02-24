@@ -6,7 +6,7 @@ export const House = (props) => {
 
     function RemoveHouse () {
         console.log(`Delete House Click for ${house._id} ${house.name}`);
-        deleteHouse(house);
+        props.deleteHouse(house);
     }
 
     const deleteRoom = (roomId) => {
