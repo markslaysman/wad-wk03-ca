@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewRoomForm } from './NewRoomForm';
+import NewRoomForm from './NewRoomForm';
 
 function House (props) {
     const { house, updateHouse } = props;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export const NewRoomForm = (props) => {
+function NewRoomForm(props){
     const [name, setName] = useState('');
     const [area, setArea] = useState(undefined);
 
@@ -44,4 +44,6 @@ export const NewRoomForm = (props) => {
         </div>
     )
 }
+
+export default NewRoomForm;
 
