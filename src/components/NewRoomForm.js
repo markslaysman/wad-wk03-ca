@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 function NewRoomForm(props){
     const [name, setName] = useState('');
-    const [area, setArea] = useState(undefined);
+    const [area, setArea] = useState('');
+
+    const nameInputRef = useRef();
+    const areaInputRef = useRef();
 
     const handleAreaInput = (e) => {
         const int = parseInt(e.target.value, 10);
@@ -30,6 +33,7 @@ function NewRoomForm(props){
                     placeholder='name'
                     onChange={(e) => setName(e.target.value)}
                     value={name}
+                    //ref={nameInputRef}
                 />
             
                 <input
@@ -37,6 +41,7 @@ function NewRoomForm(props){
                     placeholder='area'
                     onChange={handleAreaInput}
                     value={area}
+                    //ref={areaInputRef}
                 />
 
                 <button type='submit'>Add Room</button>
