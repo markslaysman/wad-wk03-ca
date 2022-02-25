@@ -1,13 +1,13 @@
 import React from 'react';
 import { NewRoomForm } from './NewRoomForm';
 
-export const House = (props) => {
+function House (props) {
     const { house, updateHouse } = props;
 
-    function RemoveHouse () {
-        console.log(`Delete House Click for ${house._id} ${house.name}`);
+    const RemoveHouse = () => {
+        //console.log(`Delete House Click for ${house._id} ${house.name}`); 
         props.deleteHouse(house);
-    }
+    };
 
     const deleteRoom = (roomId) => {
         const updatedHouse = {
@@ -44,4 +44,6 @@ export const House = (props) => {
             <NewRoomForm addNewRoom={addNewRoom} />
         </div>
     )
-};
+}
+
+export default House;

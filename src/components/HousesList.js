@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { House } from './House';
+import House from './House';
 import { housesApi } from '../rest/HousesApi.js';
 import { NewHouseForm } from './NewHouseForm';
 
