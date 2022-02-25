@@ -1,11 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 function NewRoomForm(props){
     const [name, setName] = useState('');
     const [area, setArea] = useState('');
-
-    const nameInputRef = useRef();
-    const areaInputRef = useRef();
 
     const handleAreaInput = (e) => {
         const int = parseInt(e.target.value, 10);

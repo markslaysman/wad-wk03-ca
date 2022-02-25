@@ -1,10 +1,13 @@
 const HOUSES_ENDPOINT = 'https://ancient-taiga-31359.herokuapp.com/api/houses';
+//const HOUSES_ENDPOINT = 'https://61ff088d5e1c4100174f6dd6.mockapi.io/api/houses';
 
 class HousesApi {
     get = async () => {
         try {
             const resp = await fetch(HOUSES_ENDPOINT);
             const data = await resp.json();
+            //console.log("API returned the following ");
+            //console.log(data);
             return data;
         } catch (e) {
             console.log('Error with fetch houses - ', e);

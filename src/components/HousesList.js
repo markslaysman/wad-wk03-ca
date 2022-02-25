@@ -14,31 +14,32 @@ function HousesList() {
         const fetchHouses = async () => {
             setIsLoading(true);
             const houseList = await housesApi.get();
+            //console.log(houseList);
             setHouses(houseList);
             setIsLoading(false);
         }
+        console.log("House list useEffect called due to a change");
         fetchHouses();
         houseHasChanged(false);
+        setIsLoading(false);
     }, [houseChange])
 
     const updateHouse = async(updatedHouse) => {
         await housesApi.put(updatedHouse);
-        //fetchHouses();
         houseHasChanged(true);
     };
 
     const addHouse = async(house) => {
         await housesApi.post(house);
-        //fetchHouses();
         houseHasChanged(true);
     }
 
     const deleteHouse = async(house) => {
         await housesApi.delete(house);
-        //fetchHouses();
         houseHasChanged(true);
     }
 
+    /*
     if (isLoading) {
         return (
             <div>
@@ -46,12 +47,13 @@ function HousesList() {
             </div>
         );
     }
-
+*/
     return (
         <div>
             <div className="newhouse-form">
                 <NewHouseForm addNewHouse={addHouse} />
             </div>
+        
             <div className="house-list">
                 {houses.map((house) => (
                     <House 
