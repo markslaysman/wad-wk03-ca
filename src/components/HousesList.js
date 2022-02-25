@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import House from './House';
 import { housesApi } from '../rest/HousesApi.js';
-import { NewHouseForm } from './NewHouseForm';
+import NewHouseForm from './NewHouseForm';
 
 function HousesList() {
     const [isLoading, setIsLoading] = useState(false);

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export const NewHouseForm = (props) => {
+function NewHouseForm (props) {
     const [name, setName] = useState('');
 
     const onSubmit = (e) => {
@@ -30,3 +30,4 @@ export const NewHouseForm = (props) => {
     )
 }
 
+export default NewHouseForm;
