@@ -1,0 +1,10 @@
+.housesListContainer {
+	display: grid;
+	margin: auto;
+	width: 75%;
+}
+
+.newHouseForm {
+	display: flex;
+	justify-content: center;
+}

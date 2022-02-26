@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import House from './House';
 import { housesApi } from '../rest/HousesApi.js';
 import NewHouseForm from './NewHouseForm';
+import classes from './HousesList.module.css';
 
 function HousesList() {
     const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +19,7 @@ function HousesList() {
             setHouses(houseList);
             setIsLoading(false);
         }
-        console.log("House list useEffect called due to a change");
+
         fetchHouses();
         houseHasChanged(false);
         setIsLoading(false);
@@ -32,38 +33,35 @@ function HousesList() {
     const addHouse = async(house) => {
         await housesApi.post(house);
         houseHasChanged(true);
-    }
+    };
 
     const deleteHouse = async(house) => {
         await housesApi.delete(house);
         houseHasChanged(true);
     }
 
-    /*
     if (isLoading) {
         return (
             <div>
                 <h1>LOADING.......</h1>
             </div>
         );
-    }
-*/
+    };
+
     return (
-        <div>
-            <div className="newhouse-form">
+        <div className={classes.housesListContainer}>
+            <div className={classes.newHouseForm}>
                 <NewHouseForm addNewHouse={addHouse} />
             </div>
         
-            <div className="house-list">
-                {houses.map((house) => (
-                    <House 
-                        house={house}
-                        key={house._id}
-                        updateHouse={updateHouse}
-                        deleteHouse={deleteHouse}
-                    />
-                ))}
-            </div>
+            {houses.map((house) => (
+                <House 
+                    house={house}
+                    key={house._id}
+                    updateHouse={updateHouse}
+                    deleteHouse={deleteHouse}
+                />
+            ))}
         </div>
     )
 }

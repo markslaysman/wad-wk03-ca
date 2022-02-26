@@ -1,4 +1,6 @@
 import NewRoomForm from './NewRoomForm';
+import Card from './ui/Card';
+import classes from './House.module.css';
 
 function House (props) {
     const { house, updateHouse } = props;
@@ -31,16 +33,19 @@ function House (props) {
     );
 
     return (
-        <div>
-            <div>
-                <h1>{house.name}<button onClick={RemoveHouse}>Delete House</button></h1>
-            </div>
+        <div className={classes.housedata}>
+            <Card>
+                <div className={classes.housetitle}>
+                    <h1>{house.name}</h1>
+                    <button onClick={RemoveHouse}>Delete House</button>
+                </div>
 
-            {
-                rooms({rooms, houseId: house._id, deleteRoom})
-            }
+                {
+                    rooms({rooms, houseId: house._id, deleteRoom})
+                }
 
-            <NewRoomForm addNewRoom={addNewRoom} />
+                <NewRoomForm addNewRoom={addNewRoom} />
+            </Card>
         </div>
     );
 }

@@ -16,7 +16,7 @@ function NewHouseForm (props) {
 
     return (
         <div>
-            <h4>Add New House</h4>
+            <h1>Add New House</h1>
             <form onSubmit={onSubmit}>
                 <input
                     type='text'

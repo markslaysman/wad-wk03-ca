@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import classes from './NewRoomForm.module.css';
+
 function NewRoomForm(props){
     const [name, setName] = useState('');
     const [area, setArea] = useState('');
@@ -22,7 +24,7 @@ function NewRoomForm(props){
     };
 
     return (
-        <div>
+        <div className={classes.newRoomForm}>
             <h4>Add a new room</h4>
             <form onSubmit={onSubmit}>
                 <input
